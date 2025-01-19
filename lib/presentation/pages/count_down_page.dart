@@ -51,15 +51,15 @@ class _CountDownPageState extends State<CountDownPage> {
                   animatedTexts: [
                     FadeAnimatedText(
                       "3",
-                      duration: Duration(seconds: 1),
+                      duration: Duration(milliseconds: 600),
                     ),
                     FadeAnimatedText(
                       "2",
-                      duration: Duration(seconds: 1),
+                      duration: Duration(milliseconds: 600),
                     ),
                     FadeAnimatedText(
                       "1",
-                      duration: Duration(seconds: 1),
+                      duration: Duration(milliseconds: 600),
                     ),
                   ],
                   totalRepeatCount: 1,

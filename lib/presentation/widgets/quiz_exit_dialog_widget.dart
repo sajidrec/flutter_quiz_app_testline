@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app_testline/presentation/controllers/quiz_page_controller.dart';
 import 'package:flutter_quiz_app_testline/presentation/pages/home_page.dart';
 import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class QuizExitDialogWidget {
         // Exit Button
         ElevatedButton(
           onPressed: () {
+            Get.find<QuizPageController>().stopCounter();
             Get.offAll(() => HomePage());
           },
           style: ElevatedButton.styleFrom(
