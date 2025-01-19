@@ -29,8 +29,19 @@ class QuizPageController extends GetxController {
 
   bool get getTimesUpStatus => _timesUp;
 
+  final List<bool> _answeredList = [];
+
+  List<bool> get getAnsweredList => _answeredList;
+
   void increaseCurrentQuizIndex() {
     _currentQuizIndex++;
+    update();
+  }
+
+  void setAsAnswered({
+    required int index,
+  }) {
+    _answeredList[index] = true;
     update();
   }
 
@@ -54,6 +65,11 @@ class QuizPageController extends GetxController {
     _timeLeftMinute = 15;
     _timeLeftSeconds = 0;
     _timesUp = false;
+
+    _answeredList.clear();
+    for (int i = 0; i < 10; i++) {
+      _answeredList.add(false);
+    }
     update();
 
     _timer = Timer.periodic(

@@ -90,16 +90,26 @@ class _QuizPageState extends State<QuizPage> {
                                     padding: const EdgeInsets.all(8),
                                     child: InkWell(
                                       onTap: () {
-                                        if (quizPageController.getQuestionList[
-                                                quizPageController
-                                                    .getCurrentQuizIndex]
-                                            ["options"][index]["is_correct"]) {
-                                          quizPageController.updateCurrentScore(
-                                              score: 4);
-                                          _celebrationController.play();
-                                        } else {
-                                          quizPageController.updateCurrentScore(
-                                              score: -1);
+                                        if (!quizPageController.getAnsweredList[
+                                            quizPageController
+                                                .getCurrentQuizIndex]) {
+                                          if (quizPageController
+                                                          .getQuestionList[
+                                                      quizPageController
+                                                          .getCurrentQuizIndex]
+                                                  ["options"][index]
+                                              ["is_correct"]) {
+                                            quizPageController
+                                                .updateCurrentScore(score: 4);
+                                            _celebrationController.play();
+                                          } else {
+                                            quizPageController
+                                                .updateCurrentScore(score: -1);
+                                          }
+
+                                          quizPageController.setAsAnswered(
+                                              index: quizPageController
+                                                  .getCurrentQuizIndex);
                                         }
                                       },
                                       child: Text(
