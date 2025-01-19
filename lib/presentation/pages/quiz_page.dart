@@ -112,8 +112,25 @@ class _QuizPageState extends State<QuizPage> {
                                                   .getCurrentQuizIndex);
                                         }
                                       },
-                                      child: Text(
-                                          "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}"),
+                                      child: (quizPageController
+                                                      .getAnsweredList[
+                                                  quizPageController
+                                                      .getCurrentQuizIndex] &&
+                                              quizPageController
+                                                              .getQuestionList[
+                                                          quizPageController
+                                                              .getCurrentQuizIndex]
+                                                      ["options"][index]
+                                                  ["is_correct"])
+                                          ? Text(
+                                              "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}",
+                                              style: TextStyle(
+                                                backgroundColor: AppColor.green,
+                                                color: AppColor.white,
+                                              ),
+                                            )
+                                          : Text(
+                                              "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}"),
                                     ),
                                   );
                                 },
