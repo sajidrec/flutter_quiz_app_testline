@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app_testline/data/utils/constants.dart';
 import 'package:flutter_quiz_app_testline/presentation/pages/count_down_page.dart';
 import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
 import 'package:flutter_quiz_app_testline/presentation/widgets/app_exit_dialog_widget.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    _initialFunc();
+  }
+
+  Future<void> _initialFunc() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    print(
+        "Sajid testing ${sharedPreferences.getString(Constants.problemListKey)}");
+  }
 
   @override
   Widget build(BuildContext context) {
