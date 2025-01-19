@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app_testline/presentation/controllers/home_page_controller.dart';
 import 'package:flutter_quiz_app_testline/presentation/pages/count_down_page.dart';
 import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
 import 'package:flutter_quiz_app_testline/presentation/widgets/app_exit_dialog_widget.dart';
@@ -15,6 +16,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _fetchHighScore();
+  }
+
+  Future<void> _fetchHighScore() async {
+    await Get.find<HomePageController>().fetchHighScore();
   }
 
   @override
@@ -40,12 +46,14 @@ class _HomePageState extends State<HomePage> {
                         color: AppColor.primaryOrange,
                         size: 50,
                       ),
-                      Text(
-                        "Highest Score 0",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      GetBuilder<HomePageController>(builder: (controller) {
+                        return Text(
+                          "Highest Score ${controller.getHighScore}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }),
                     ],
                   ),
                 ),

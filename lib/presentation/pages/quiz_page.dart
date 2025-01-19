@@ -1,3 +1,4 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app_testline/presentation/controllers/quiz_page_controller.dart';
 import 'package:flutter_quiz_app_testline/presentation/pages/result_page.dart';
@@ -19,6 +20,10 @@ class _QuizPageState extends State<QuizPage> {
     Get.find<QuizPageController>().startCounter();
     Get.find<QuizPageController>().fetchQuestionList();
   }
+
+  final _celebrationController = ConfettiController(
+    duration: Duration(milliseconds: 400),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +56,15 @@ class _QuizPageState extends State<QuizPage> {
                       return Column(
                         children: [
                           const SizedBox(height: 10),
+                          ConfettiWidget(
+                            confettiController: _celebrationController,
+                            blastDirectionality: BlastDirectionality.explosive,
+                            // Set the blast direction
+                            numberOfParticles: 50,
+                            gravity: 1,
+                          ),
                           Text(
-                            "Current Score : 1000",
+                            "Current Score : ${quizPageController.getCurrentScore}",
                             style: TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 10),
@@ -71,14 +83,38 @@ class _QuizPageState extends State<QuizPage> {
                           const SizedBox(height: 10),
                           Column(
                             children: [
-                              Text("data"),
-                              const SizedBox(height: 5),
-                              Text("data"),
-                              const SizedBox(height: 5),
-                              Text("data"),
-                              const SizedBox(height: 5),
-                              Text("data"),
-                              const SizedBox(height: 5),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: InkWell(
+                                      onTap: () {
+                                        if (quizPageController.getQuestionList[
+                                                quizPageController
+                                                    .getCurrentQuizIndex]
+                                            ["options"][index]["is_correct"]) {
+                                          quizPageController.updateCurrentScore(
+                                              score: 4);
+                                          _celebrationController.play();
+                                        } else {
+                                          quizPageController.updateCurrentScore(
+                                              score: -1);
+                                        }
+                                      },
+                                      child: Text(
+                                          "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}"),
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return SizedBox(height: 10);
+                                },
+                                itemCount: quizPageController
+                                    .getQuestionList[quizPageController
+                                        .getCurrentQuizIndex]["options"]
+                                    .length,
+                              ),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8),
@@ -102,7 +138,12 @@ class _QuizPageState extends State<QuizPage> {
                                                 .getCurrentQuizIndex >=
                                             9) {
                                           quizPageController.stopCounter();
-                                          Get.off(() => ResultPage());
+                                          Get.off(
+                                            () => ResultPage(
+                                              score: quizPageController
+                                                  .getCurrentScore,
+                                            ),
+                                          );
                                         } else {
                                           quizPageController
                                               .increaseCurrentQuizIndex();

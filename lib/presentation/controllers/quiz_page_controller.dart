@@ -15,6 +15,10 @@ class QuizPageController extends GetxController {
   Timer? _timer;
   int _currentQuizIndex = 0;
 
+  int _currentScore = 0;
+
+  int get getCurrentScore => _currentScore;
+
   int get getCurrentQuizIndex => _currentQuizIndex;
 
   List<dynamic> get getQuestionList => _questionList;
@@ -30,6 +34,13 @@ class QuizPageController extends GetxController {
     update();
   }
 
+  void updateCurrentScore({
+    required int score,
+  }) {
+    _currentScore += score;
+    update();
+  }
+
   void decreaseCurrentQuizIndex() {
     if (_currentQuizIndex > 0) {
       _currentQuizIndex--;
@@ -39,6 +50,7 @@ class QuizPageController extends GetxController {
 
   void startCounter() {
     _currentQuizIndex = 0;
+    _currentScore = 0;
     _timeLeftMinute = 15;
     _timeLeftSeconds = 0;
     _timesUp = false;
@@ -51,7 +63,11 @@ class QuizPageController extends GetxController {
           _timesUp = true;
           update();
           _timer?.cancel();
-          Get.off(() => ResultPage());
+          Get.off(
+            () => ResultPage(
+              score: _currentScore,
+            ),
+          );
         } else {
           if (_timeLeftSeconds > 0) {
             _timeLeftSeconds--;
