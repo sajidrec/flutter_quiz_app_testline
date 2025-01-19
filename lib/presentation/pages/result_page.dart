@@ -7,7 +7,11 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Text("Result Page"),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [],
+          ),
+        ),
       ),
     );
   }

@@ -13,6 +13,9 @@ class QuizPageController extends GetxController {
   bool _timesUp = true;
   List<dynamic> _questionList = [];
   Timer? _timer;
+  int _currentQuizIndex = 0;
+
+  int get getCurrentQuizIndex => _currentQuizIndex;
 
   List<dynamic> get getQuestionList => _questionList;
 
@@ -22,7 +25,20 @@ class QuizPageController extends GetxController {
 
   bool get getTimesUpStatus => _timesUp;
 
+  void increaseCurrentQuizIndex() {
+    _currentQuizIndex++;
+    update();
+  }
+
+  void decreaseCurrentQuizIndex() {
+    if (_currentQuizIndex > 0) {
+      _currentQuizIndex--;
+    }
+    update();
+  }
+
   void startCounter() {
+    _currentQuizIndex = 0;
     _timeLeftMinute = 15;
     _timeLeftSeconds = 0;
     _timesUp = false;

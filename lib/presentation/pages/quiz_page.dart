@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app_testline/presentation/controllers/quiz_page_controller.dart';
+import 'package:flutter_quiz_app_testline/presentation/pages/result_page.dart';
+import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
 import 'package:flutter_quiz_app_testline/presentation/widgets/quiz_exit_dialog_widget.dart';
 import 'package:get/get.dart';
 
@@ -44,21 +46,84 @@ class _QuizPageState extends State<QuizPage> {
                       );
                     },
                   ),
-                  GetBuilder<QuizPageController>(builder: (quizPageController) {
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Text(
-                          quizPageController.getQuestionList[index]["id"]
-                              .toString(),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(height: 5);
-                      },
-                      itemCount: quizPageController.getQuestionList.length,
-                    );
-                  }),
+                  GetBuilder<QuizPageController>(
+                    builder: (quizPageController) {
+                      return Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          Text(
+                            "Current Score : 1000",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              quizPageController.getQuestionList[
+                                      quizPageController.getCurrentQuizIndex]
+                                  ["description"],
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Column(
+                            children: [
+                              Text("data"),
+                              const SizedBox(height: 5),
+                              Text("data"),
+                              const SizedBox(height: 5),
+                              Text("data"),
+                              const SizedBox(height: 5),
+                              Text("data"),
+                              const SizedBox(height: 5),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: Row(
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        quizPageController
+                                            .decreaseCurrentQuizIndex();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColor.primaryBlue,
+                                        foregroundColor: AppColor.white,
+                                      ),
+                                      child: Text("Previous"),
+                                    ),
+                                    Spacer(),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        if (quizPageController
+                                                .getCurrentQuizIndex >=
+                                            9) {
+                                          quizPageController.stopCounter();
+                                          Get.off(() => ResultPage());
+                                        } else {
+                                          quizPageController
+                                              .increaseCurrentQuizIndex();
+                                        }
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            AppColor.primaryDarkBlue,
+                                        foregroundColor: AppColor.white,
+                                      ),
+                                      child: Text("Next"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
