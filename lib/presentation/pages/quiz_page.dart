@@ -15,6 +15,7 @@ class _QuizPageState extends State<QuizPage> {
   void initState() {
     super.initState();
     Get.find<QuizPageController>().startCounter();
+    Get.find<QuizPageController>().fetchQuestionList();
   }
 
   @override
@@ -43,6 +44,21 @@ class _QuizPageState extends State<QuizPage> {
                       );
                     },
                   ),
+                  GetBuilder<QuizPageController>(builder: (quizPageController) {
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Text(
+                          quizPageController.getQuestionList[index]["id"]
+                              .toString(),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: 5);
+                      },
+                      itemCount: quizPageController.getQuestionList.length,
+                    );
+                  }),
                 ],
               ),
             ),

@@ -13,7 +13,7 @@ class SplashScreenControllers extends GetxController {
     bool alreadyHaveProblems = false;
 
     if (sharedPreferences.containsKey(Constants.problemListKey)) {
-      final value = sharedPreferences.get(Constants.problemListKey);
+      final value = sharedPreferences.getString(Constants.problemListKey);
       if (value != null) {
         alreadyHaveProblems = true;
       }

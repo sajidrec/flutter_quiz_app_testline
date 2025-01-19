@@ -1,14 +1,20 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
 
+import 'package:flutter_quiz_app_testline/data/utils/constants.dart';
 import 'package:flutter_quiz_app_testline/presentation/pages/result_page.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizPageController extends GetxController {
   int _timeLeftMinute = 0;
   int _timeLeftSeconds = 0;
   bool _timesUp = true;
-
+  List<dynamic> _questionList = [];
   Timer? _timer;
+
+  List<dynamic> get getQuestionList => _questionList;
 
   int get getTimeLeftMinute => _timeLeftMinute;
 
@@ -45,5 +51,27 @@ class QuizPageController extends GetxController {
 
   void stopCounter() {
     _timer?.cancel();
+  }
+
+  Future<void> fetchQuestionList() async {
+    final problemSetList = await _fetchProblem();
+    _questionList = problemSetList;
+    _questionList.shuffle(Random());
+    update();
+  }
+
+  Future<dynamic> _fetchProblem() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    if (sharedPreferences.containsKey(Constants.problemListKey)) {
+      if (sharedPreferences.getString(Constants.problemListKey) != null) {
+        dynamic data = jsonDecode(
+            sharedPreferences.getString(Constants.problemListKey) ?? "");
+
+        return data["questions"];
+      }
+    }
+
+    return [];
   }
 }
