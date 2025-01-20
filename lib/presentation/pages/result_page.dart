@@ -41,47 +41,49 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          Get.offAll(() => HomePage());
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("Result"),
-            centerTitle: true,
-            backgroundColor: AppColor.primaryBlue,
-            foregroundColor: AppColor.white,
-          ),
-          body: SingleChildScrollView(
-            child: SizedBox(
-              width: Get.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 10),
-                  Icon(
-                    Icons.emoji_events_outlined,
-                    color: AppColor.primaryOrange,
-                    size: Get.height / 3,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    widget.score.toString(),
-                    style: TextStyle(fontSize: Get.width / 4),
-                  ),
-                  Text(
-                    "Your score",
-                    style: TextStyle(fontSize: Get.width / 6),
-                  ),
-                ],
+    return OrientationBuilder(builder: (context, orientationBuilder) {
+      return SafeArea(
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            Get.offAll(() => HomePage());
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text("Result"),
+              centerTitle: true,
+              backgroundColor: AppColor.primaryBlue,
+              foregroundColor: AppColor.white,
+            ),
+            body: SingleChildScrollView(
+              child: SizedBox(
+                width: Get.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 10),
+                    Icon(
+                      Icons.emoji_events_outlined,
+                      color: AppColor.primaryOrange,
+                      size: Get.height / 3,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      widget.score.toString(),
+                      style: TextStyle(fontSize: Get.width / 4),
+                    ),
+                    Text(
+                      "Your score",
+                      style: TextStyle(fontSize: Get.width / 6),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

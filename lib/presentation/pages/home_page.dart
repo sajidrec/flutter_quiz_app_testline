@@ -30,95 +30,97 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          AppExitDialogComponent().showDialog(context);
-        },
-        child: Scaffold(
-          body: GetBuilder<HomePageController>(builder: (homePageController) {
-            return (!homePageController.getQuizDataAvailableStatus)
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "No data available please connect to internet and hit reconnect to try again.",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            await homePageController.reConnect();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.primaryBlue,
-                            foregroundColor: AppColor.white,
+    return OrientationBuilder(builder: (context, orientationBuilder) {
+      return SafeArea(
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            AppExitDialogComponent().showDialog(context);
+          },
+          child: Scaffold(
+            body: GetBuilder<HomePageController>(builder: (homePageController) {
+              return (!homePageController.getQuizDataAvailableStatus)
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "No data available please connect to internet and hit reconnect to try again.",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          child: (homePageController.getTryingReconnectStatus)
-                              ? CircularProgressIndicator(
-                                  color: AppColor.white,
-                                )
-                              : Text("Reconnect"),
-                        ),
-                      ],
-                    ),
-                  )
-                : SizedBox(
-                    width: Get.width,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 5,
-                          right: 8,
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.emoji_events,
-                                color: AppColor.primaryOrange,
-                                size: 50,
-                              ),
-                              GetBuilder<HomePageController>(
-                                  builder: (controller) {
-                                return Text(
-                                  "Highest Score ${controller.getHighScore}",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                );
-                              }),
-                            ],
-                          ),
-                        ),
-                        Center(
-                          child: ElevatedButton(
+                          ElevatedButton(
+                            onPressed: () async {
+                              await homePageController.reConnect();
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColor.primaryBlue,
                               foregroundColor: AppColor.white,
-                              shadowColor: AppColor.primaryDarkBlue,
-                              minimumSize: Size(50, 50),
-                              elevation: 5,
                             ),
-                            onPressed: () {
-                              Get.to(
-                                () => CountDownPage(),
-                              );
-                            },
-                            child: Text(
-                              "Start the quiz",
-                              style: TextStyle(fontSize: 18),
+                            child: (homePageController.getTryingReconnectStatus)
+                                ? CircularProgressIndicator(
+                                    color: AppColor.white,
+                                  )
+                                : Text("Reconnect"),
+                          ),
+                        ],
+                      ),
+                    )
+                  : SizedBox(
+                      width: Get.width,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 5,
+                            right: 8,
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.emoji_events,
+                                  color: AppColor.primaryOrange,
+                                  size: 50,
+                                ),
+                                GetBuilder<HomePageController>(
+                                    builder: (controller) {
+                                  return Text(
+                                    "Highest Score ${controller.getHighScore}",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                }),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-          }),
+                          Center(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColor.primaryBlue,
+                                foregroundColor: AppColor.white,
+                                shadowColor: AppColor.primaryDarkBlue,
+                                minimumSize: Size(50, 50),
+                                elevation: 5,
+                              ),
+                              onPressed: () {
+                                Get.to(
+                                  () => CountDownPage(),
+                                );
+                              },
+                              child: Text(
+                                "Start the quiz",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+            }),
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
