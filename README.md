@@ -61,6 +61,13 @@ responsiveness across various devices and orientations.
 
 ---
 
+## Video Walkthrough
+
+A short video demonstrating the app's features is
+available [here](https://drive.google.com/file/d/1cMCLrmzmeubtqml_vnwy23AGVe9h8UI3/view?usp=drive_link).
+
+---
+
 ## Screenshots
 
 Below are some screenshots showcasing the app's user interface:
@@ -72,13 +79,6 @@ Below are some screenshots showcasing the app's user interface:
 | ![3.png](screenshots/3.png) | Confetti animation for correct answers            |
 | ![4.png](screenshots/4.png) | Quiz Screen                                       |
 | ![5.png](screenshots/5.png) | Result summary screen showing total points scored |
-
----
-
-## Video Walkthrough
-
-A short video demonstrating the app's features is
-available [here](https://drive.google.com/file/d/1cMCLrmzmeubtqml_vnwy23AGVe9h8UI3/view?usp=drive_link).
 
 ---
 
