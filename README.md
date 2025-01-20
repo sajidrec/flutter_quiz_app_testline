@@ -3,7 +3,7 @@
 ## Project Overview
 
 This Flutter-based quiz application features gamification elements to enhance user engagement. Users
-can start a quiz, answer multiple-choice questions, and view a summary of their results, including
+can start a quiz, answer questions, and view a summary of their results, including
 total points scored. The application fetches quiz data from an API endpoint and ensures
 responsiveness across various devices and orientations.
 
@@ -65,13 +65,13 @@ responsiveness across various devices and orientations.
 
 Below are some screenshots showcasing the app's user interface:
 
-| Screenshot                   | Description                                       |
-|------------------------------|---------------------------------------------------|
-| ![1.png](./screenshot/1.png) | Splash Screen                                     |
-| ![2.png](./screenshot/2.png) | Home screen with a "Start the quiz" button        |
-| ![3.png](./screenshot/3.png) | Confetti animation for correct answers            |
-| ![4.png](./screenshot/4.png) | Quiz Screen                                       |
-| ![5.png](./screenshot/5.png) | Result summary screen showing total points scored |
+| Screenshot                 | Description                                       |
+|----------------------------|---------------------------------------------------|
+| ![1.png](screenshot/1.png) | Splash Screen                                     |
+| ![2.png](screenshot/2.png) | Home screen with a "Start the quiz" button        |
+| ![3.png](screenshot/3.png) | Confetti animation for correct answers            |
+| ![4.png](screenshot/4.png) | Quiz Screen                                       |
+| ![5.png](screenshot/5.png) | Result summary screen showing total points scored |
 
 ---
 
