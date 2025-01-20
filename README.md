@@ -98,14 +98,6 @@ Below are some screenshots showcasing the app's user interface:
 
 ---
 
-## Future Enhancements
-
-- Add a leaderboard for competitive gamification.
-- Include more question categories and difficulty levels.
-- Add offline mode for quizzes.
-
----
-
 ## Credits
 
 - **API Source:** [JsonServe](https://jsonserve.com/)
