@@ -65,13 +65,13 @@ responsiveness across various devices and orientations.
 
 Below are some screenshots showcasing the app's user interface:
 
-| Screenshot                 | Description                                       |
-|----------------------------|---------------------------------------------------|
-| ![1.png](screenshot/1.png) | Splash Screen                                     |
-| ![2.png](screenshot/2.png) | Home screen with a "Start the quiz" button        |
-| ![3.png](screenshot/3.png) | Confetti animation for correct answers            |
-| ![4.png](screenshot/4.png) | Quiz Screen                                       |
-| ![5.png](screenshot/5.png) | Result summary screen showing total points scored |
+| Screenshot                  | Description                                       |
+|-----------------------------|---------------------------------------------------|
+| ![1.png](screenshots/1.png) | Splash Screen                                     |
+| ![2.png](screenshots/2.png) | Home screen with a "Start the quiz" button        |
+| ![3.png](screenshots/3.png) | Confetti animation for correct answers            |
+| ![4.png](screenshots/4.png) | Quiz Screen                                       |
+| ![5.png](screenshots/5.png) | Result summary screen showing total points scored |
 
 ---
 
