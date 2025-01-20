@@ -30,7 +30,7 @@ class SplashScreenControllers extends GetxController {
         );
 
         Future.delayed(
-          Duration(seconds: 3),
+          Duration(seconds: 5),
           () {
             cancelToken.cancel();
           },
