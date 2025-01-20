@@ -1,9 +1,9 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app_testline/presentation/components/quiz_exit_dialog_component.dart';
 import 'package:flutter_quiz_app_testline/presentation/controllers/quiz_page_controller.dart';
 import 'package:flutter_quiz_app_testline/presentation/pages/result_page.dart';
 import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
-import 'package:flutter_quiz_app_testline/presentation/widgets/quiz_exit_dialog_widget.dart';
 import 'package:get/get.dart';
 
 class QuizPage extends StatefulWidget {
@@ -31,7 +31,7 @@ class _QuizPageState extends State<QuizPage> {
       child: PopScope(
         canPop: false,
         onPopInvokedWithResult: (didPop, result) {
-          QuizExitDialogWidget().showDialog();
+          QuizExitDialogComponent().showDialog();
         },
         child: Scaffold(
           body: SingleChildScrollView(

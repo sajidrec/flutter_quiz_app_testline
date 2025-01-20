@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
 import 'package:get/get.dart';
 
-class AppExitDialogWidget {
+class AppExitDialogComponent {
   void showDialog(BuildContext context) {
     Get.defaultDialog(
       title: "Exit?",

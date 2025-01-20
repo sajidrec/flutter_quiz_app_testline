@@ -4,7 +4,7 @@ import 'package:flutter_quiz_app_testline/presentation/pages/home_page.dart';
 import 'package:flutter_quiz_app_testline/presentation/utils/app_color.dart';
 import 'package:get/get.dart';
 
-class QuizExitDialogWidget {
+class QuizExitDialogComponent {
   void showDialog() {
     Get.defaultDialog(
       title: "Exit the quiz?",
