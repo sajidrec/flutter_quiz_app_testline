@@ -55,7 +55,7 @@ available [here](https://drive.google.com/file/d/1cMCLrmzmeubtqml_vnwy23AGVe9h8U
    ```
 2. Navigate to the project directory:
    ```bash
-   cd flutter_quiz_app
+   cd flutter_quiz_app_testline
    ```
 3. Fetch dependencies:
    ```bash
