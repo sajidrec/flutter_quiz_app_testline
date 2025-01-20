@@ -42,6 +42,9 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Total Score"),
+        ),
         body: SingleChildScrollView(
           child: SizedBox(
             width: Get.width,

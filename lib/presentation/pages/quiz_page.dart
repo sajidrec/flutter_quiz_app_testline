@@ -84,53 +84,85 @@ class _QuizPageState extends State<QuizPage> {
                           Column(
                             children: [
                               ListView.separated(
+                                primary: false,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: InkWell(
-                                      onTap: () {
-                                        if (!quizPageController.getAnsweredList[
-                                            quizPageController
-                                                .getCurrentQuizIndex]) {
-                                          if (quizPageController
-                                                          .getQuestionList[
-                                                      quizPageController
-                                                          .getCurrentQuizIndex]
-                                                  ["options"][index]
-                                              ["is_correct"]) {
-                                            quizPageController
-                                                .updateCurrentScore(score: 4);
-                                            _celebrationController.play();
-                                          } else {
-                                            quizPageController
-                                                .updateCurrentScore(score: -1);
-                                          }
-
-                                          quizPageController.setAsAnswered(
-                                              index: quizPageController
-                                                  .getCurrentQuizIndex);
-                                        }
-                                      },
-                                      child: (quizPageController
-                                                      .getAnsweredList[
-                                                  quizPageController
-                                                      .getCurrentQuizIndex] &&
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    child: DefaultTextStyle(
+                                      style: TextStyle(
+                                        color: AppColor.white,
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          if (!quizPageController
+                                                  .getAnsweredList[
                                               quizPageController
-                                                              .getQuestionList[
-                                                          quizPageController
-                                                              .getCurrentQuizIndex]
-                                                      ["options"][index]
-                                                  ["is_correct"])
-                                          ? Text(
-                                              "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}",
-                                              style: TextStyle(
-                                                backgroundColor: AppColor.green,
-                                                color: AppColor.white,
-                                              ),
-                                            )
-                                          : Text(
-                                              "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}"),
+                                                  .getCurrentQuizIndex]) {
+                                            if (quizPageController
+                                                            .getQuestionList[
+                                                        quizPageController
+                                                            .getCurrentQuizIndex]
+                                                    ["options"][index]
+                                                ["is_correct"]) {
+                                              quizPageController
+                                                  .updateCurrentScore(score: 4);
+                                              _celebrationController.play();
+                                            } else {
+                                              quizPageController
+                                                  .updateCurrentScore(
+                                                      score: -1);
+                                            }
+
+                                            quizPageController.setAsAnswered(
+                                                index: quizPageController
+                                                    .getCurrentQuizIndex);
+                                          }
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: (quizPageController
+                                                            .getAnsweredList[
+                                                        quizPageController
+                                                            .getCurrentQuizIndex] &&
+                                                    quizPageController
+                                                                .getQuestionList[
+                                                            quizPageController
+                                                                .getCurrentQuizIndex]
+                                                        [
+                                                        "options"][index]["is_correct"])
+                                                ? AppColor.green
+                                                : AppColor.grey,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(12.0),
+                                            child: (quizPageController
+                                                            .getAnsweredList[
+                                                        quizPageController
+                                                            .getCurrentQuizIndex] &&
+                                                    quizPageController
+                                                                    .getQuestionList[
+                                                                quizPageController
+                                                                    .getCurrentQuizIndex]
+                                                            ["options"][index]
+                                                        ["is_correct"])
+                                                ? Text(
+                                                    "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}",
+                                                    style: TextStyle(
+                                                      backgroundColor:
+                                                          AppColor.green,
+                                                      color: AppColor.white,
+                                                    ),
+                                                  )
+                                                : Text(
+                                                    "${quizPageController.getQuestionList[quizPageController.getCurrentQuizIndex]["options"][index]["description"]}"),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   );
                                 },
@@ -142,6 +174,7 @@ class _QuizPageState extends State<QuizPage> {
                                         .getCurrentQuizIndex]["options"]
                                     .length,
                               ),
+                              const SizedBox(height: 10),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8),
