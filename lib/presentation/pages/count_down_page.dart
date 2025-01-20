@@ -29,57 +29,59 @@ class _CountDownPageState extends State<CountDownPage> {
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(builder: (context, orientationBuilder) {
-      return SafeArea(
-        child: Scaffold(
-          body: Stack(
-            children: [
-              ConfettiWidget(
-                confettiController: _celebrationController,
-                blastDirectionality: BlastDirectionality.explosive,
-                // Set the blast direction
-                numberOfParticles: 50,
-                gravity: 0.3,
-              ),
-              Center(
-                child: DefaultTextStyle(
-                  style: TextStyle(
-                    fontSize: 80,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.primaryDarkBlue,
-                  ),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      FadeAnimatedText(
-                        "3",
-                        duration: Duration(milliseconds: 600),
-                      ),
-                      FadeAnimatedText(
-                        "2",
-                        duration: Duration(milliseconds: 600),
-                      ),
-                      FadeAnimatedText(
-                        "1",
-                        duration: Duration(milliseconds: 600),
-                      ),
-                    ],
-                    totalRepeatCount: 1,
-                    onFinished: () {
-                      celebrate();
-                      Future.delayed(
-                        Duration(seconds: 2),
-                        () => Get.off(
-                          () => QuizPage(),
+    return OrientationBuilder(
+      builder: (context, orientationBuilder) {
+        return SafeArea(
+          child: Scaffold(
+            body: Stack(
+              children: [
+                ConfettiWidget(
+                  confettiController: _celebrationController,
+                  blastDirectionality: BlastDirectionality.explosive,
+                  // Set the blast direction
+                  numberOfParticles: 50,
+                  gravity: 0.3,
+                ),
+                Center(
+                  child: DefaultTextStyle(
+                    style: TextStyle(
+                      fontSize: 80,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.primaryDarkBlue,
+                    ),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        FadeAnimatedText(
+                          "3",
+                          duration: Duration(milliseconds: 600),
                         ),
-                      );
-                    },
+                        FadeAnimatedText(
+                          "2",
+                          duration: Duration(milliseconds: 600),
+                        ),
+                        FadeAnimatedText(
+                          "1",
+                          duration: Duration(milliseconds: 600),
+                        ),
+                      ],
+                      totalRepeatCount: 1,
+                      onFinished: () {
+                        celebrate();
+                        Future.delayed(
+                          Duration(seconds: 2),
+                          () => Get.off(
+                            () => QuizPage(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
