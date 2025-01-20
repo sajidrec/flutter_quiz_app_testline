@@ -9,6 +9,13 @@ responsiveness across various devices and orientations.
 
 ---
 
+## Video Walkthrough
+
+A short video demonstrating the app's features is
+available [here](https://drive.google.com/file/d/1cMCLrmzmeubtqml_vnwy23AGVe9h8UI3/view?usp=drive_link).
+
+---
+
 ## Features
 
 ### Core Features
@@ -58,13 +65,6 @@ responsiveness across various devices and orientations.
    ```bash
    flutter run
    ```
-
----
-
-## Video Walkthrough
-
-A short video demonstrating the app's features is
-available [here](https://drive.google.com/file/d/1cMCLrmzmeubtqml_vnwy23AGVe9h8UI3/view?usp=drive_link).
 
 ---
 
